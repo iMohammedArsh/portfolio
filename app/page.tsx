@@ -1,8 +1,11 @@
+import Link from 'next/link'
 import React from 'react'
 
 function page() {
   return (
-    <div>page</div>
+    <>
+      <div className=''><h1>I'm Arsh</h1></div>
+    </>
   )
 }
 
