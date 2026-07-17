@@ -50,7 +50,7 @@ export default function CustomCursor() {
           width: 8,
           height: 8,
           borderRadius: '50%',
-          backgroundColor: '#0D0D0D',
+          backgroundColor: '#ffffff',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           zIndex: 9999,
@@ -67,12 +67,13 @@ export default function CustomCursor() {
           width: 32,
           height: 32,
           borderRadius: '50%',
-          border: `1.5px solid ${isHovering ? '#1A6BFF' : '#0D0D0D'}`,
+          border: `1.5px solid ${isHovering ? '#1A6BFF' : 'rgba(255,255,255,0.6)'}`,
+          transition: 'border-color 150ms ease-out',
           transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
           zIndex: 9998,
         }}
-        animate={{ scale: isHovering ? 1.8 : 1, opacity: isHovering ? 0.6 : 0.4 }}
+        animate={{ scale: isHovering ? 1.8 : 1, opacity: isHovering ? 0.8 : 0.6 }}
         transition={{ duration: 0.2 }}
       />
     </>

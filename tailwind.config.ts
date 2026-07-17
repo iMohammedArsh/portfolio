@@ -27,6 +27,8 @@ const config: Config = {
       boxShadow: {
         card: '0 4px 24px rgba(13,13,13,0.06)',
         'card-hover': '0 8px 40px rgba(13,13,13,0.12)',
+        'neon-blue': '0 0 20px rgba(26,107,255,0.4)',
+        'neon-blue-lg': '0 0 40px rgba(26,107,255,0.3)',
       },
     },
   },

@@ -1,18 +1,21 @@
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
 function LetsTalkBanner() {
   const items = Array.from({ length: 8 }, (_, i) => i)
   return (
-    <div className="overflow-hidden border-t border-[#1a1a1a] py-6 mt-20">
+    <div
+      className="overflow-hidden border-t border-white/6 py-6 mt-20"
+      aria-hidden="true"
+    >
       <div className="flex" style={{ animation: 'marquee 18s linear infinite' }}>
         {items.map((i) => (
           <span
             key={i}
-            className="font-hero font-black italic text-3xl md:text-4xl text-[#F5F4F0] whitespace-nowrap px-10 shrink-0"
+            className="font-hero font-black italic text-3xl md:text-4xl text-white/80 whitespace-nowrap px-10 shrink-0"
             style={{ letterSpacing: '-0.01em' }}
           >
-            Let's Talk!
+            Let's Talk
           </span>
         ))}
       </div>
@@ -20,6 +23,9 @@ function LetsTalkBanner() {
         @keyframes marquee {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .marquee-inner { animation: none !important; }
         }
       `}</style>
     </div>
@@ -61,54 +67,13 @@ const socials = [
   },
 ]
 
-function SocialCard({ name, handle, url, icon }: typeof socials[0]) {
-  const cardRef = useRef<HTMLAnchorElement>(null)
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    const card = cardRef.current
-    if (!card) return
-    const rect = card.getBoundingClientRect()
-    const rotateX = ((e.clientY - rect.top - rect.height / 2) / rect.height) * -8
-    const rotateY = ((e.clientX - rect.left - rect.width / 2) / rect.width) * 8
-    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`
-  }
-
-  const handleMouseLeave = () => {
-    if (cardRef.current) cardRef.current.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)'
-  }
-
-  return (
-    <a
-      ref={cardRef}
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      data-cursor-hover
-      className="flex items-center justify-between p-4 bg-[#111] border border-[#222] rounded-card hover:border-[#1A6BFF]/40 transition-all duration-200 group"
-      style={{ willChange: 'transform' }}
-    >
-      <div className="flex items-center gap-3">
-        <span className="text-[#555] group-hover:text-[#1A6BFF] transition-colors">{icon}</span>
-        <div>
-          <p className="font-dm font-medium text-[#F5F4F0] text-sm">{name}</p>
-          <p className="font-dm text-[#555] text-xs">{handle}</p>
-        </div>
-      </div>
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-[#555] group-hover:text-[#1A6BFF] group-hover:translate-x-1 transition-all">
-        <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    </a>
-  )
-}
-
 export default function Contact() {
   const [name, setName]         = useState('')
   const [email, setEmail]       = useState('')
   const [message, setMessage]   = useState('')
   const [selected, setSelected] = useState<string[]>([])
   const [submitted, setSubmitted] = useState(false)
+  const [errors, setErrors]     = useState<{ name?: string; email?: string; message?: string }>({})
 
   const toggleInquiry = (type: string) => {
     setSelected((prev) =>
@@ -116,17 +81,28 @@ export default function Contact() {
     )
   }
 
+  const validate = () => {
+    const e: typeof errors = {}
+    if (!name.trim())    e.name    = 'Name is required'
+    if (!email.trim())   e.email   = 'Email is required'
+    else if (!/\S+@\S+\.\S+/.test(email)) e.email = 'Enter a valid email'
+    if (!message.trim()) e.message = 'Message is required'
+    return e
+  }
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (!name || !email || !message) return
+    const errs = validate()
+    if (Object.keys(errs).length > 0) { setErrors(errs); return }
+    setErrors({})
     setSubmitted(true)
   }
 
   const inputClass =
-    'w-full px-4 py-3 rounded-card border border-[#222] bg-[#111] font-dm text-sm text-[#F5F4F0] placeholder:text-[#444] focus:outline-none focus:border-[#1A6BFF] focus:ring-1 focus:ring-[#1A6BFF]/20 transition-all duration-200'
+    'w-full px-4 py-3 rounded-card border bg-white/[0.04] font-dm text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-blue/60 focus:ring-1 focus:ring-blue/20 transition-colors duration-200'
 
   return (
-    <section id="contact" aria-label="Contact Mohammed Arsh" className="bg-[#0D0D0D] pb-0">
+    <section id="contact" aria-label="Contact Mohammed Arsh" className="bg-ink pb-0">
       <div className="max-w-6xl mx-auto px-6 pt-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
 
@@ -137,11 +113,11 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-xs font-dm text-[#6B7280] tracking-[0.2em] uppercase mb-4">/ Contact</p>
-            <h2 className="font-hero font-black text-4xl md:text-5xl text-[#F5F4F0] leading-tight mb-6" style={{ letterSpacing: '-0.02em' }}>
+            <p className="text-xs font-dm text-white/40 tracking-[0.2em] uppercase mb-4">/ Contact</p>
+            <h2 className="font-hero font-black text-4xl md:text-5xl text-white leading-tight mb-6" style={{ letterSpacing: '-0.02em' }}>
               Let's build something.
             </h2>
-            <p className="font-dm text-[#6B7280] text-lg mb-8 leading-relaxed">
+            <p className="font-dm text-white/50 text-lg mb-8 leading-relaxed">
               Have a project in mind? Want to collaborate? Or just want to say hi?
             </p>
 
@@ -153,15 +129,15 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.4 }}
-                  className="p-8 bg-[#111] border border-[#222] rounded-card text-center"
+                  className="p-8 bg-white/[0.04] border border-white/8 rounded-card text-center"
                 >
-                  <div className="w-12 h-12 rounded-full bg-green-900/30 border border-green-700/40 flex items-center justify-center mx-auto mb-4">
+                  <div className="w-12 h-12 rounded-full bg-blue/10 border border-blue/20 flex items-center justify-center mx-auto mb-4">
                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                      <path d="M4 10l4.5 4.5L16 6" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M4 10l4.5 4.5L16 6" stroke="#1A6BFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </div>
-                  <p className="font-hero font-black text-xl text-[#F5F4F0] mb-1">Message sent!</p>
-                  <p className="font-dm text-sm text-[#6B7280]">I'll get back to you soon.</p>
+                  <p className="font-hero font-black text-xl text-white mb-1">Message sent</p>
+                  <p className="font-dm text-sm text-white/50">I'll get back to you soon.</p>
                 </motion.div>
               ) : (
                 <motion.form
@@ -170,30 +146,36 @@ export default function Contact() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onSubmit={handleSubmit}
+                  noValidate
                   className="space-y-4"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <input
-                      type="text"
-                      placeholder="Your name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      required
-                      className={inputClass}
-                    />
-                    <input
-                      type="email"
-                      placeholder="Your email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      className={inputClass}
-                    />
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Your name"
+                        value={name}
+                        onChange={(e) => { setName(e.target.value); setErrors((p) => ({ ...p, name: undefined })) }}
+                        className={`${inputClass} ${errors.name ? 'border-red-500/50' : 'border-white/8'}`}
+                        aria-invalid={!!errors.name}
+                      />
+                      {errors.name && <p className="mt-1 text-xs text-red-400 font-dm">{errors.name}</p>}
+                    </div>
+                    <div>
+                      <input
+                        type="email"
+                        placeholder="Your email"
+                        value={email}
+                        onChange={(e) => { setEmail(e.target.value); setErrors((p) => ({ ...p, email: undefined })) }}
+                        className={`${inputClass} ${errors.email ? 'border-red-500/50' : 'border-white/8'}`}
+                        aria-invalid={!!errors.email}
+                      />
+                      {errors.email && <p className="mt-1 text-xs text-red-400 font-dm">{errors.email}</p>}
+                    </div>
                   </div>
 
-                  {/* Inquiry type */}
                   <div>
-                    <p className="font-dm text-xs text-[#6B7280] uppercase tracking-[0.15em] mb-2">Inquiry type</p>
+                    <p className="font-dm text-xs text-white/40 uppercase tracking-[0.15em] mb-2">Inquiry type</p>
                     <div className="flex flex-wrap gap-2">
                       {inquiryTypes.map((type) => {
                         const active = selected.includes(type)
@@ -202,32 +184,35 @@ export default function Contact() {
                             key={type}
                             type="button"
                             onClick={() => toggleInquiry(type)}
-                            className={`px-3 py-1.5 rounded-badge border text-xs font-dm transition-all duration-150 ${
+                            className={`px-3 py-1.5 rounded-badge border text-xs font-dm transition-all duration-150 active:scale-[0.97] ${
                               active
-                                ? 'bg-[#F5F4F0] text-[#0D0D0D] border-[#F5F4F0]'
-                                : 'bg-transparent text-[#6B7280] border-[#222] hover:border-[#555] hover:text-[#F5F4F0]'
+                                ? 'bg-blue text-white border-blue'
+                                : 'bg-transparent text-white/50 border-white/10 hover:border-white/30 hover:text-white'
                             }`}
                           >
-                            {active ? '✓ ' : ''}{type}
+                            {type}
                           </button>
                         )
                       })}
                     </div>
                   </div>
 
-                  <textarea
-                    placeholder="What's on your mind?"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    required
-                    rows={4}
-                    className={`${inputClass} resize-none`}
-                  />
+                  <div>
+                    <textarea
+                      placeholder="What's on your mind?"
+                      value={message}
+                      onChange={(e) => { setMessage(e.target.value); setErrors((p) => ({ ...p, message: undefined })) }}
+                      rows={4}
+                      className={`${inputClass} resize-none ${errors.message ? 'border-red-500/50' : 'border-white/8'}`}
+                      aria-invalid={!!errors.message}
+                    />
+                    {errors.message && <p className="mt-1 text-xs text-red-400 font-dm">{errors.message}</p>}
+                  </div>
 
                   <button
                     type="submit"
                     data-cursor-hover
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#F5F4F0] text-[#0D0D0D] rounded-badge font-dm font-medium text-sm hover:bg-[#1A6BFF] hover:text-white transition-colors duration-200"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue text-white rounded-badge font-dm font-medium text-sm hover:bg-blue/80 active:scale-[0.97] transition-all duration-150"
                   >
                     Send message →
                   </button>
@@ -236,7 +221,7 @@ export default function Contact() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Right — social cards */}
+          {/* Right — social cards (no tilt) */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -244,17 +229,35 @@ export default function Contact() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex flex-col gap-3 lg:pt-28"
           >
-            <p className="font-dm text-xs text-[#6B7280] uppercase tracking-[0.15em] mb-2">Or find me at</p>
+            <p className="font-dm text-xs text-white/40 uppercase tracking-[0.15em] mb-2">Or find me at</p>
             {socials.map((social) => (
-              <SocialCard key={social.name} {...social} />
+              <a
+                key={social.name}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor-hover
+                className="flex items-center justify-between p-4 bg-white/[0.03] border border-white/8 rounded-card hover:border-blue/30 hover:-translate-y-0.5 transition-all duration-200 group"
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-white/30 group-hover:text-blue transition-colors">{social.icon}</span>
+                  <div>
+                    <p className="font-dm font-medium text-white text-sm">{social.name}</p>
+                    <p className="font-dm text-white/30 text-xs">{social.handle}</p>
+                  </div>
+                </div>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="text-white/20 group-hover:text-blue group-hover:translate-x-1 transition-all duration-200">
+                  <path d="M3 8h10M8 3l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
             ))}
 
-            <div className="mt-4 p-4 bg-[#111] border border-[#222] rounded-card">
-              <p className="font-dm text-xs text-[#6B7280] mb-1">Email directly</p>
+            <div className="mt-4 p-4 bg-white/[0.03] border border-white/8 rounded-card">
+              <p className="font-dm text-xs text-white/40 mb-1">Email directly</p>
               <a
                 href="mailto:wuslateam@gmail.com"
                 data-cursor-hover
-                className="font-dm font-medium text-[#F5F4F0] text-sm hover:text-[#1A6BFF] transition-colors"
+                className="font-dm font-medium text-white text-sm hover:text-blue transition-colors duration-200"
               >
                 wuslateam@gmail.com →
               </a>
@@ -264,7 +267,6 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Scrolling banner at the bottom */}
       <LetsTalkBanner />
     </section>
   )

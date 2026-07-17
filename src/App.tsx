@@ -9,13 +9,14 @@ import Projects from './components/Projects'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import VideoStory from './components/VideoStory'
 
 export default function App() {
   return (
     <HelmetProvider>
       <Helmet>
         <html lang="en" />
-        <meta name="theme-color" content="#F5F4F0" />
+        <meta name="theme-color" content="#0D0D0D" />
       </Helmet>
 
       <CustomCursor />
@@ -23,6 +24,7 @@ export default function App() {
 
       <main>
         <Hero />
+        <VideoStory />
         <Values />
         <About />
         <Skills />

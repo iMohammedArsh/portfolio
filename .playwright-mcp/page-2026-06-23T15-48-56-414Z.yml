@@ -1,0 +1,348 @@
+- generic [ref=e2]:
+  - banner:
+    - navigation:
+      - link "MA":
+        - /url: "#"
+      - generic:
+        - link "About":
+          - /url: "#about"
+        - link "Skills":
+          - /url: "#skills"
+        - link "Projects":
+          - /url: "#projects"
+        - link "Experience":
+          - /url: "#experience"
+        - link "Contact":
+          - /url: "#contact"
+      - generic:
+        - link "Say Hello →":
+          - /url: "#contact"
+  - main [ref=e3]:
+    - region "Mohammed Arsh — Full Stack and AI/ML Engineer" [ref=e4]:
+      - generic [ref=e9]:
+        - navigation [ref=e10]:
+          - link "MA" [ref=e11]:
+            - /url: "#"
+          - generic [ref=e12]:
+            - link "About" [ref=e13]:
+              - /url: "#about"
+            - link "Skills" [ref=e14]:
+              - /url: "#skills"
+            - link "Projects" [ref=e15]:
+              - /url: "#projects"
+            - link "Experience" [ref=e16]:
+              - /url: "#experience"
+            - link "Contact" [ref=e17]:
+              - /url: "#contact"
+          - link "Say Hello →" [ref=e18]:
+            - /url: "#contact"
+        - generic [ref=e19]:
+          - generic [ref=e21]: Available · Kerala, India
+          - generic [ref=e23]:
+            - heading "Where Logic" [level=1] [ref=e25]
+            - heading "Meets" [level=1] [ref=e27]
+            - heading "Intelligence." [level=1] [ref=e29]
+          - generic [ref=e30]:
+            - generic [ref=e31]:
+              - generic [ref=e32]: 4+
+              - generic [ref=e33]: Years Building
+            - generic [ref=e34]:
+              - generic [ref=e35]: 12+
+              - generic [ref=e36]: Projects Shipped
+            - paragraph [ref=e38]: Full Stack + AI/ML Engineer
+          - generic [ref=e39]:
+            - link "View Work →" [ref=e40]:
+              - /url: "#projects"
+            - link "Say Hello" [ref=e41]:
+              - /url: "#contact"
+          - generic [ref=e42]:
+            - generic [ref=e43]: React
+            - generic [ref=e44]: Next.js
+            - generic [ref=e45]: Python
+            - generic [ref=e46]: FastAPI
+            - generic [ref=e47]: LangChain
+            - generic [ref=e48]: TypeScript
+    - region "Engineering values" [ref=e50]:
+      - generic [ref=e51]:
+        - paragraph [ref=e52]: / What I stand for
+        - generic [ref=e53]:
+          - generic [ref=e54]:
+            - heading "SCALABLE" [level=3] [ref=e55]
+            - paragraph [ref=e57]: Systems that grow with you — architected for the long run, not just the demo.
+          - generic [ref=e58]:
+            - heading "INTELLIGENT" [level=3] [ref=e59]
+            - paragraph [ref=e61]: AI-driven solutions that think, adapt, and solve real problems at scale.
+          - generic [ref=e62]:
+            - heading "PERFORMANT" [level=3] [ref=e63]
+            - paragraph [ref=e65]: Fast by design. Every millisecond is a UX decision.
+          - generic [ref=e66]:
+            - heading "PURPOSEFUL" [level=3] [ref=e67]
+            - paragraph [ref=e69]: Built with intention. No bloat, no noise — only what matters.
+    - region "About Mohammed Arsh" [ref=e70]:
+      - generic [ref=e72]:
+        - generic [ref=e73]:
+          - paragraph [ref=e74]: / About
+          - generic [ref=e75]:
+            - generic [ref=e76]: "04"
+            - generic [ref=e77]: +
+            - generic [ref=e78]:
+              - paragraph [ref=e79]: Years of
+              - paragraph [ref=e80]: Building
+          - heading "Building tech that feels simple." [level=2] [ref=e81]:
+            - text: Building tech that
+            - text: feels simple.
+          - generic [ref=e82]:
+            - paragraph [ref=e83]: I'm a self-taught Full Stack and AI/ML Engineer from Kerala, India. What started as curiosity about how websites work turned into a full-on obsession with building things that matter.
+            - paragraph [ref=e84]: I specialize in making complex systems feel intuitive — whether that's a React frontend, a FastAPI backend, or an AI pipeline powered by LangChain.
+            - paragraph [ref=e85]: Currently building my personal brand and an education platform for developers. Always open to interesting problems and great people.
+          - link "View my work →" [ref=e86]:
+            - /url: "#projects"
+        - generic [ref=e87]:
+          - paragraph [ref=e88]: Quick facts
+          - generic [ref=e89]:
+            - paragraph [ref=e90]: Location
+            - paragraph [ref=e91]: Kerala, India
+          - generic [ref=e92]:
+            - paragraph [ref=e93]: Specialization
+            - paragraph [ref=e94]: Full Stack + AI/ML
+          - generic [ref=e95]:
+            - paragraph [ref=e96]: Currently building
+            - paragraph [ref=e97]: Personal brand + dev education platform
+          - generic [ref=e98]:
+            - paragraph [ref=e99]: Open to
+            - paragraph [ref=e100]: Freelance · Startup collabs · Open source
+          - generic [ref=e101]:
+            - paragraph [ref=e102]: Languages
+            - paragraph [ref=e103]: English · Malayalam · Hindi
+    - region "Technical Skills" [ref=e104]:
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - paragraph [ref=e107]: What I build with
+          - heading "Skills." [level=2] [ref=e108]
+        - generic [ref=e109]:
+          - generic [ref=e110]:
+            - generic [ref=e111]: React
+            - generic [ref=e112]: Frontend
+          - generic [ref=e113]:
+            - generic [ref=e114]: Next.js
+            - generic [ref=e115]: Frontend
+          - generic [ref=e116]:
+            - generic [ref=e117]: TypeScript
+            - generic [ref=e118]: Language
+          - generic [ref=e119]:
+            - generic [ref=e120]: Python
+            - generic [ref=e121]: Language
+          - generic [ref=e122]:
+            - generic [ref=e123]: FastAPI
+            - generic [ref=e124]: Backend
+          - generic [ref=e125]:
+            - generic [ref=e126]: LangChain
+            - generic [ref=e127]: AI/ML
+          - generic [ref=e128]:
+            - generic [ref=e129]: Node.js
+            - generic [ref=e130]: Backend
+          - generic [ref=e131]:
+            - generic [ref=e132]: PostgreSQL
+            - generic [ref=e133]: Database
+          - generic [ref=e134]:
+            - generic [ref=e135]: MongoDB
+            - generic [ref=e136]: Database
+          - generic [ref=e137]:
+            - generic [ref=e138]: Docker
+            - generic [ref=e139]: DevOps
+          - generic [ref=e140]:
+            - generic [ref=e141]: Vercel
+            - generic [ref=e142]: DevOps
+          - generic [ref=e143]:
+            - generic [ref=e144]: Git
+            - generic [ref=e145]: Tooling
+        - generic [ref=e147]:
+          - generic [ref=e148]: React ·
+          - generic [ref=e149]: Next.js ·
+          - generic [ref=e150]: TypeScript ·
+          - generic [ref=e151]: Python ·
+          - generic [ref=e152]: FastAPI ·
+          - generic [ref=e153]: LangChain ·
+          - generic [ref=e154]: MongoDB ·
+          - generic [ref=e155]: PostgreSQL ·
+          - generic [ref=e156]: Docker ·
+          - generic [ref=e157]: Git ·
+          - generic [ref=e158]: Vercel ·
+          - generic [ref=e159]: Node.js ·
+          - generic [ref=e160]: React ·
+          - generic [ref=e161]: Next.js ·
+          - generic [ref=e162]: TypeScript ·
+          - generic [ref=e163]: Python ·
+          - generic [ref=e164]: FastAPI ·
+          - generic [ref=e165]: LangChain ·
+          - generic [ref=e166]: MongoDB ·
+          - generic [ref=e167]: PostgreSQL ·
+          - generic [ref=e168]: Docker ·
+          - generic [ref=e169]: Git ·
+          - generic [ref=e170]: Vercel ·
+          - generic [ref=e171]: Node.js ·
+    - region "Projects" [ref=e172]:
+      - generic [ref=e173]:
+        - generic [ref=e174]:
+          - generic [ref=e175]:
+            - paragraph [ref=e176]: / Selected Work
+            - heading "Projects." [level=2] [ref=e177]
+          - link "View GitHub" [ref=e178]:
+            - /url: https://github.com/iMohammedArsh
+            - img [ref=e179]
+            - text: View GitHub
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - generic [ref=e183]:
+              - generic [ref=e185]: Full Stack
+              - generic [ref=e188]: In development
+            - generic [ref=e189]:
+              - generic [ref=e190]:
+                - generic [ref=e191]: "01"
+                - link [ref=e192]:
+                  - /url: https://github.com/iMohammedArsh
+                  - img [ref=e193]
+              - heading "Dev Education Platform" [level=3] [ref=e195]
+              - paragraph [ref=e196]: A structured learning platform for developers — covering React, APIs, and AI-powered tooling from the ground up.
+              - generic [ref=e197]:
+                - generic [ref=e198]: React
+                - generic [ref=e199]: Next.js
+                - generic [ref=e200]: FastAPI
+                - generic [ref=e201]: PostgreSQL
+          - generic [ref=e203]:
+            - generic [ref=e204]:
+              - generic [ref=e206]: AI / ML
+              - generic [ref=e209]: Prototyping
+            - generic [ref=e210]:
+              - generic [ref=e211]:
+                - generic [ref=e212]: "02"
+                - link [ref=e213]:
+                  - /url: https://github.com/iMohammedArsh
+                  - img [ref=e214]
+              - heading "AI Writing Assistant" [level=3] [ref=e216]
+              - paragraph [ref=e217]: LangChain-powered tool that helps developers write docs, READMEs, and commit messages — fast.
+              - generic [ref=e218]:
+                - generic [ref=e219]: Python
+                - generic [ref=e220]: LangChain
+                - generic [ref=e221]: OpenAI API
+                - generic [ref=e222]: FastAPI
+          - generic [ref=e224]:
+            - generic [ref=e225]:
+              - generic [ref=e227]: Open Source
+              - generic [ref=e230]: Planning
+            - generic [ref=e231]:
+              - generic [ref=e232]:
+                - generic [ref=e233]: "03"
+                - link [ref=e234]:
+                  - /url: https://github.com/iMohammedArsh
+                  - img [ref=e235]
+              - heading "UI Component Library" [level=3] [ref=e237]
+              - paragraph [ref=e238]: Accessible, zero-dependency React components built for speed, flexibility, and dark-mode-first design.
+              - generic [ref=e239]:
+                - generic [ref=e240]: React
+                - generic [ref=e241]: TypeScript
+                - generic [ref=e242]: Tailwind CSS
+                - generic [ref=e243]: Storybook
+          - paragraph [ref=e246]:
+            - text: More coming — follow on
+            - link "GitHub" [ref=e247]:
+              - /url: https://github.com/iMohammedArsh
+    - region "Work Experience" [ref=e248]:
+      - generic [ref=e249]:
+        - generic [ref=e250]:
+          - paragraph [ref=e251]: / Experience
+          - heading "Journey." [level=2] [ref=e252]
+        - generic [ref=e254]:
+          - article [ref=e255]:
+            - paragraph [ref=e257]: 2024 — Present
+            - generic [ref=e258]:
+              - heading "Independent Developer" [level=3] [ref=e259]
+              - generic [ref=e260]: ·
+              - generic [ref=e261]: Freelance
+              - generic [ref=e262]: LIVE
+            - paragraph [ref=e264]: Building client projects, personal tools, and open-source contributions. Turning ideas into production-ready web applications and AI-powered systems.
+            - generic [ref=e265]:
+              - generic [ref=e266]: React
+              - generic [ref=e267]: Next.js
+              - generic [ref=e268]: Python
+              - generic [ref=e269]: AI/ML
+          - article [ref=e270]:
+            - paragraph [ref=e272]: 2021 — 2024
+            - generic [ref=e273]:
+              - heading "Self-taught Engineer" [level=3] [ref=e274]
+              - generic [ref=e275]: ·
+              - generic [ref=e276]: Personal Growth
+            - paragraph [ref=e277]: "Learning foundations through projects: web development, backend systems, AI/ML integration. Built a comprehensive skill set from the ground up."
+            - generic [ref=e278]:
+              - generic [ref=e279]: HTML/CSS
+              - generic [ref=e280]: JavaScript
+              - generic [ref=e281]: Python
+              - generic [ref=e282]: System Design
+    - region "Contact Mohammed Arsh" [ref=e283]:
+      - generic [ref=e285]:
+        - generic [ref=e286]:
+          - paragraph [ref=e287]: / Contact
+          - heading "Let's build something." [level=2] [ref=e288]
+          - paragraph [ref=e289]: Have a project in mind? Want to collaborate? Or just want to say hi?
+          - generic [ref=e290]:
+            - generic [ref=e291]:
+              - textbox "Your name" [ref=e293]
+              - textbox "Your email" [ref=e295]
+            - generic [ref=e296]:
+              - paragraph [ref=e297]: Inquiry type
+              - generic [ref=e298]:
+                - button "Freelance" [ref=e299] [cursor=pointer]
+                - button "Collaboration" [ref=e300] [cursor=pointer]
+                - button "Open Source" [ref=e301] [cursor=pointer]
+                - button "Just saying hi" [ref=e302] [cursor=pointer]
+            - textbox "What's on your mind?" [ref=e304]
+            - button "Send message →" [ref=e305] [cursor=pointer]
+        - generic [ref=e306]:
+          - paragraph [ref=e307]: Or find me at
+          - link "GitHub iMohammedArsh" [ref=e308]:
+            - /url: https://github.com/iMohammedArsh
+            - generic [ref=e309]:
+              - img [ref=e311]
+              - generic [ref=e313]:
+                - paragraph [ref=e314]: GitHub
+                - paragraph [ref=e315]: iMohammedArsh
+            - img [ref=e316]
+          - link "LinkedIn arshwusla" [ref=e318]:
+            - /url: https://www.linkedin.com/in/arshwusla
+            - generic [ref=e319]:
+              - img [ref=e321]
+              - generic [ref=e323]:
+                - paragraph [ref=e324]: LinkedIn
+                - paragraph [ref=e325]: arshwusla
+            - img [ref=e326]
+          - link "Instagram mohammedarsh.codewith" [ref=e328]:
+            - /url: https://www.instagram.com/mohammedarsh.codewith/
+            - generic [ref=e329]:
+              - img [ref=e331]
+              - generic [ref=e333]:
+                - paragraph [ref=e334]: Instagram
+                - paragraph [ref=e335]: mohammedarsh.codewith
+            - img [ref=e336]
+          - generic [ref=e338]:
+            - paragraph [ref=e339]: Email directly
+            - link "wuslateam@gmail.com →" [ref=e340]:
+              - /url: mailto:wuslateam@gmail.com
+      - generic [ref=e342]:
+        - generic [ref=e343]: Let's Talk
+        - generic [ref=e344]: Let's Talk
+        - generic [ref=e345]: Let's Talk
+        - generic [ref=e346]: Let's Talk
+        - generic [ref=e347]: Let's Talk
+        - generic [ref=e348]: Let's Talk
+        - generic [ref=e349]: Let's Talk
+        - generic [ref=e350]: Let's Talk
+  - contentinfo [ref=e351]:
+    - generic [ref=e352]:
+      - paragraph [ref=e353]: Mohammed Arsh © 2026 · Kerala, India
+      - generic [ref=e354]:
+        - link "GitHub" [ref=e355]:
+          - /url: https://github.com/iMohammedArsh
+        - link "LinkedIn" [ref=e356]:
+          - /url: https://www.linkedin.com/in/arshwusla
+        - link "Instagram" [ref=e357]:
+          - /url: https://www.instagram.com/mohammedarsh.codewith/

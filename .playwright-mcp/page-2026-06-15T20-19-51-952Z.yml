@@ -1,0 +1,121 @@
+- generic [ref=e3]:
+  - navigation [ref=e5]:
+    - generic [ref=e6]:
+      - link "ClubLing" [ref=e7] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e8]:
+        - link "How it works" [ref=e9] [cursor=pointer]:
+          - /url: "#how-it-works"
+        - link "Features" [ref=e10] [cursor=pointer]:
+          - /url: "#features"
+        - link "Levels" [ref=e11] [cursor=pointer]:
+          - /url: "#levels"
+        - link "Pricing" [ref=e12] [cursor=pointer]:
+          - /url: "#pricing"
+        - link "Start free" [ref=e13] [cursor=pointer]:
+          - /url: /login
+  - main [ref=e14]:
+    - generic [ref=e16]:
+      - generic [ref=e17]:
+        - heading "Your English, measured precisely" [level=1] [ref=e18]:
+          - text: Your English,
+          - text: measured precisely
+        - paragraph [ref=e19]: AI speech analysis that scores pronunciation, grammar, vocabulary, and fluency against the CEFR framework.
+        - link "Try it free" [ref=e21] [cursor=pointer]:
+          - /url: /login
+      - img "ClubLing speech analysis dashboard showing pronunciation scores and waveform visualization" [ref=e24]
+    - generic [ref=e27]:
+      - paragraph [ref=e28]: Preparing learners for roles at
+      - generic [ref=e29]:
+        - img "google"
+        - img "microsoft"
+        - img "amazon"
+        - img "meta"
+        - img "apple"
+    - generic [ref=e31]:
+      - generic [ref=e32]:
+        - heading "Three steps to clarity" [level=2] [ref=e33]
+        - paragraph [ref=e34]: No lessons, no quizzes. Just your real voice, analyzed by AI.
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]: "01"
+          - heading "Speak naturally" [level=3] [ref=e38]
+          - paragraph [ref=e39]: Record yourself answering real workplace prompts. No scripts, no rehearsals.
+        - generic [ref=e40]:
+          - generic [ref=e41]: "02"
+          - heading "AI analyses your speech" [level=3] [ref=e42]
+          - paragraph [ref=e43]: Gemini processes pronunciation, grammar, vocabulary, and fluency in real time.
+        - generic [ref=e44]:
+          - generic [ref=e45]: "03"
+          - heading "Get your CEFR level" [level=3] [ref=e46]
+          - paragraph [ref=e47]: Receive an independent assessment across Listening, Speaking, Reading, and Writing.
+    - generic [ref=e50]:
+      - img "Sound waves transforming into structured data visualization" [ref=e52]
+      - generic [ref=e53]:
+        - heading "Speech becomes data" [level=2] [ref=e54]
+        - paragraph [ref=e55]: Gemini's native audio model processes your speech directly, scoring each axis independently.
+        - generic [ref=e56]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: Pronunciation
+            - generic [ref=e60]: Scored 0-100
+          - generic [ref=e64]:
+            - generic [ref=e65]: Grammar
+            - generic [ref=e66]: Scored 0-100
+          - generic [ref=e70]:
+            - generic [ref=e71]: Vocabulary
+            - generic [ref=e72]: Scored 0-100
+          - generic [ref=e76]:
+            - generic [ref=e77]: Fluency
+            - generic [ref=e78]: Scored 0-100
+    - generic [ref=e83]:
+      - generic [ref=e84]:
+        - paragraph [ref=e85]: CEFR Framework
+        - heading "Where do you stand?" [level=2] [ref=e86]
+        - paragraph [ref=e87]: Each skill is assessed independently. Your Speaking might be B2 while Reading is B1.
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - generic [ref=e90]: B2
+            - generic [ref=e91]: Upper Intermediate
+          - paragraph [ref=e92]: Communicates fluently in professional settings.
+      - generic [ref=e93]:
+        - button "A1Beginner" [ref=e94] [cursor=pointer]
+        - button "A2Elementary" [ref=e95] [cursor=pointer]
+        - button "B1Intermediate" [ref=e96] [cursor=pointer]
+        - button "B2Upper Intermediate" [ref=e97] [cursor=pointer]
+        - button "C1Advanced" [ref=e98] [cursor=pointer]
+        - button "C2Mastery" [ref=e99] [cursor=pointer]
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - generic [ref=e104]: "4"
+        - paragraph [ref=e105]: Skill axes scored
+      - generic [ref=e106]:
+        - generic [ref=e107]: "6"
+        - paragraph [ref=e108]: CEFR levels mapped
+      - generic [ref=e109]:
+        - generic [ref=e110]: <2min
+        - paragraph [ref=e111]: Minutes for feedback
+    - generic [ref=e114]:
+      - generic [ref=e115]:
+        - img "Desk workspace with microphone, headphones, and phonetics notebook"
+      - generic [ref=e116]:
+        - blockquote [ref=e117]: “I went from B1 to B2 in three months. The pronunciation feedback helped me land my first international interview.”
+        - generic [ref=e118]:
+          - generic [ref=e119]: RP
+          - generic [ref=e120]:
+            - paragraph [ref=e121]: Ravi Patel
+            - paragraph [ref=e122]: Software Engineer, Bangalore
+    - generic [ref=e124]:
+      - heading "Start speaking with confidence" [level=2] [ref=e125]
+      - paragraph [ref=e126]: Free to start. No credit card required. Get your CEFR assessment in under two minutes.
+      - link "Get started free" [ref=e128] [cursor=pointer]:
+        - /url: /login
+  - contentinfo [ref=e129]:
+    - generic [ref=e130]:
+      - paragraph [ref=e131]: © 2026 ClubLing Academy
+      - generic [ref=e132]:
+        - link "Privacy" [ref=e133] [cursor=pointer]:
+          - /url: "#"
+        - link "Terms" [ref=e134] [cursor=pointer]:
+          - /url: "#"
+        - link "Contact" [ref=e135] [cursor=pointer]:
+          - /url: "#"
