@@ -16,45 +16,130 @@
     <!-- Open Graph -->
     <meta property="og:title" content="Mohammed Arsh — Full Stack & AI/ML Engineer" />
     <meta property="og:description" content="Full Stack and AI/ML Engineer from Kerala, India. Building elegant web applications and intelligent systems." />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="profile" />
+    <meta property="profile:first_name" content="Mohammed" />
+    <meta property="profile:last_name" content="Arsh" />
     <meta property="og:url" content="https://mohammedarsh.dev/" />
-    <meta property="og:image" content="https://mohammedarsh.dev/og-image.jpg" />
+    <meta property="og:image" content="https://mohammedarsh.dev/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mohammed Arsh — Full-stack & AI/ML engineer, Kerala, India" />
     <meta property="og:locale" content="en_IN" />
+    <meta property="og:site_name" content="Mohammed Arsh — Portfolio" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Mohammed Arsh — Full Stack & AI/ML Engineer" />
     <meta name="twitter:description" content="Full Stack and AI/ML Engineer from Kerala, India. Building elegant web applications and intelligent systems." />
-    <meta name="twitter:image" content="https://mohammedarsh.dev/og-image.jpg" />
+    <meta name="twitter:image" content="https://mohammedarsh.dev/og-image.png" />
+    <meta name="twitter:image:alt" content="Mohammed Arsh — Full-stack & AI/ML engineer, Kerala, India" />
+
+    <!-- Identity verification (helps search engines confirm this domain belongs to these profiles) -->
+    <link rel="me" href="https://github.com/iMohammedArsh" />
+    <link rel="me" href="https://www.linkedin.com/in/arshwusla" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@700;800;900&family=Syne:wght@600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,100..900&display=swap" rel="stylesheet" />
 
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Mohammed Arsh",
-      "jobTitle": "Full Stack & AI/ML Engineer",
-      "url": "https://mohammedarsh.dev",
-      "email": "wuslateam@gmail.com",
-      "address": {
-        "@type": "PostalAddress",
-        "addressRegion": "Kerala",
-        "addressCountry": "IN"
-      },
-      "sameAs": [
-        "https://github.com/iMohammedArsh",
-        "https://www.linkedin.com/in/arshwusla",
-        "https://www.instagram.com/mohammedarsh.codewith/"
-      ],
-      "knowsAbout": [
-        "React", "Next.js", "TypeScript", "Python", "FastAPI",
-        "Machine Learning", "LangChain", "OpenAI API",
-        "Node.js", "MongoDB", "PostgreSQL", "Docker"
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://mohammedarsh.dev/#person",
+          "name": "Mohammed Arsh",
+          "alternateName": "iMohammedArsh",
+          "jobTitle": "Full Stack & AI/ML Engineer",
+          "description": "Self-taught Full Stack and AI/ML Engineer based in Kerala, India, building web applications and AI-powered systems with React, Next.js, Python, FastAPI, and LangChain.",
+          "disambiguatingDescription": "This is the software engineer Mohammed Arsh (GitHub: iMohammedArsh, LinkedIn: arshwusla) — a self-taught Full Stack and AI/ML Engineer from Kerala, India — as distinct from other people who share this name.",
+          "url": "https://mohammedarsh.dev",
+          "mainEntityOfPage": { "@id": "https://mohammedarsh.dev/#profilepage" },
+          "email": "wuslateam@gmail.com",
+          "address": {
+            "@type": "PostalAddress",
+            "addressRegion": "Kerala",
+            "addressCountry": "IN"
+          },
+          "sameAs": [
+            "https://github.com/iMohammedArsh",
+            "https://www.linkedin.com/in/arshwusla",
+            "https://www.instagram.com/mohammedarsh.codewith/"
+          ],
+          "knowsAbout": [
+            "React", "Next.js", "TypeScript", "Python", "FastAPI",
+            "Machine Learning", "LangChain", "OpenAI API",
+            "Node.js", "MongoDB", "PostgreSQL", "Docker"
+          ],
+          "knowsLanguage": ["English", "Malayalam", "Hindi"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://mohammedarsh.dev/#website",
+          "url": "https://mohammedarsh.dev",
+          "name": "Mohammed Arsh — Portfolio",
+          "publisher": { "@id": "https://mohammedarsh.dev/#person" },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://mohammedarsh.dev/#profilepage",
+          "url": "https://mohammedarsh.dev/",
+          "name": "Mohammed Arsh — Full Stack & AI/ML Engineer | Kerala, India",
+          "isPartOf": { "@id": "https://mohammedarsh.dev/#website" },
+          "about": { "@id": "https://mohammedarsh.dev/#person" },
+          "mainEntity": { "@id": "https://mohammedarsh.dev/#person" },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "FAQPage",
+          "@id": "https://mohammedarsh.dev/#faq",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Who is Mohammed Arsh?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mohammed Arsh is a self-taught Full Stack and AI/ML Engineer based in Kerala, India, building web applications and AI-powered systems with React, Next.js, Python, FastAPI, and LangChain."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What does Mohammed Arsh specialize in?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Full-stack web development with React, Next.js, TypeScript, and Node.js, paired with AI/ML engineering using Python, FastAPI, and LangChain — building products end to end with AI wired into the backend rather than bolted on."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is Mohammed Arsh based?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mohammed Arsh is based in Kerala, India, and works with clients and collaborators remotely."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is Mohammed Arsh available for freelance or startup work?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes — Mohammed Arsh is currently open to freelance projects, startup collaborations, and open-source contributions."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where can I see Mohammed Arsh's projects or code?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Mohammed Arsh's public projects are on GitHub at github.com/iMohammedArsh, with a live, auto-updating selection featured in the Projects section of this portfolio."
+              }
+            }
+          ]
+        }
       ]
     }
     </script>
