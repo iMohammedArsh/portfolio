@@ -1,5 +1,6 @@
-import { motion, useAnimationFrame, useMotionValue } from 'framer-motion'
-import { useRef } from 'react'
+import { motion } from 'framer-motion'
+import Marquee from './ui/Marquee'
+import { fadeUp, revealBlur, staggerContainer, viewportOnce } from '../lib/motion'
 
 const skills = [
   { label: 'React',       category: 'Frontend' },
@@ -16,97 +17,61 @@ const skills = [
   { label: 'Git',         category: 'Tooling'  },
 ]
 
+const categories = Array.from(new Set(skills.map((s) => s.category)))
+
 const marqueeItems = [
   'React', 'Next.js', 'TypeScript', 'Python', 'FastAPI',
   'LangChain', 'MongoDB', 'PostgreSQL', 'Docker', 'Git', 'Vercel', 'Node.js',
 ]
 
-function Marquee() {
-  const x = useMotionValue(0)
-  const containerRef = useRef<HTMLDivElement>(null)
-  const itemWidth = useRef(0)
-
-  useAnimationFrame((_, delta) => {
-    if (!containerRef.current) return
-    itemWidth.current = containerRef.current.scrollWidth / 2
-    let current = x.get() - delta * 0.045
-    if (Math.abs(current) >= itemWidth.current) current = 0
-    x.set(current)
-  })
-
-  const items = [...marqueeItems, ...marqueeItems]
-
-  return (
-    <div
-      className="overflow-hidden mt-16 border-t border-white/6 pt-6"
-      aria-hidden="true"
-    >
-      <motion.div ref={containerRef} style={{ x }} className="flex whitespace-nowrap">
-        {items.map((item, i) => (
-          <span key={i} className="font-dm text-xs text-white/20 uppercase tracking-[0.3em] px-6">
-            {item} <span className="text-white/10 mx-2">·</span>
-          </span>
-        ))}
-      </motion.div>
-    </div>
-  )
-}
-
-const container = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.04 } },
-}
-const item = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: [0.23, 1, 0.32, 1] } },
-}
-
 export default function Skills() {
   return (
-    <section id="skills" aria-label="Technical Skills" className="bg-ink py-24 px-6 grid-bg-dark">
-      <div className="max-w-[1280px] mx-auto">
+    <section id="skills" aria-label="Technical Skills" className="bg-paper py-28 md:py-36 px-6 md:px-10 lg:pl-36">
+      <div className="max-w-[1320px] mx-auto">
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-4"
-        >
-          <p className="font-dm text-[10px] text-white/40 tracking-[0.4em] uppercase mb-4">What I build with</p>
-          <h2
-            className="font-hero font-black text-5xl md:text-7xl text-white"
-            style={{ letterSpacing: '-0.02em' }}
-          >
-            Skills<span className="text-blue">.</span>
-          </h2>
-        </motion.div>
-
-        <motion.div
-          variants={container}
+        <motion.h2
+          variants={revealBlur}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 mt-14"
+          viewport={viewportOnce}
+          className="font-sans font-semibold text-4xl md:text-6xl text-ink tracking-[-0.02em] mb-16 md:mb-20 max-w-2xl"
         >
-          {skills.map((skill) => (
-            <motion.div
-              key={skill.label}
-              variants={item}
-              data-cursor-hover
-              className="group flex flex-col items-center gap-2.5 p-4 rounded-card border border-white/6 bg-white/[0.02] hover:border-blue/30 hover:bg-blue/5 transition-all duration-200 cursor-default"
-            >
-              <span className="font-dm text-xs font-medium text-white/50 group-hover:text-white/90 transition-colors duration-200 text-center leading-tight">
-                {skill.label}
-              </span>
-              <span className="font-dm text-[9px] text-white/20 uppercase tracking-[0.2em]">
-                {skill.category}
-              </span>
+          What I use.
+        </motion.h2>
+
+        <motion.div
+          variants={staggerContainer(0.06)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="grid grid-cols-2 md:grid-cols-6 gap-x-6 gap-y-12"
+        >
+          {categories.map((category) => (
+            <motion.div key={category} variants={fadeUp}>
+              <p className="font-sans text-[12px] text-ink/35 mb-4 pb-3 border-b border-ink/10">
+                {category}
+              </p>
+              <ul className="space-y-3">
+                {skills.filter((s) => s.category === category).map((s) => (
+                  <li key={s.label} className="group relative block w-fit font-sans font-medium text-ink text-[16px] cursor-default">
+                    {s.label}
+                    <span className="absolute left-0 -bottom-0.5 h-px w-0 bg-ink transition-all duration-300 group-hover:w-full" />
+                  </li>
+                ))}
+              </ul>
             </motion.div>
           ))}
         </motion.div>
 
-        <Marquee />
+        <Marquee
+          items={marqueeItems.map((item) => (
+            <>
+              {item} <span className="text-ink/20 mx-3">·</span>
+            </>
+          ))}
+          className="mt-24 border-t border-ink/10 pt-7"
+          itemClassName="font-sans font-medium text-ink/30 text-sm tracking-wide px-4"
+        />
       </div>
     </section>
   )

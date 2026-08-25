@@ -8,27 +8,23 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: '#F5F4F0',
-        blue: '#1A6BFF',
-        violet: '#6B21E8',
-        ink: '#0D0D0D',
-        muted: '#6B7280',
-        border: '#E5E3DD',
+        ink: '#0A0A0A',
+        paper: '#F5F5F7',
+        mist: '#86868B',
       },
       fontFamily: {
-        hero: ['Hanken Grotesk', 'sans-serif'],
-        syne: ['Syne', 'sans-serif'],
-        dm: ['DM Sans', 'sans-serif'],
+        sans: ['"Inter var"', 'Inter', 'ui-sans-serif', 'sans-serif'],
       },
       borderRadius: {
-        card: '12px',
+        card: '18px',
         badge: '999px',
       },
       boxShadow: {
-        card: '0 4px 24px rgba(13,13,13,0.06)',
-        'card-hover': '0 8px 40px rgba(13,13,13,0.12)',
-        'neon-blue': '0 0 20px rgba(26,107,255,0.4)',
-        'neon-blue-lg': '0 0 40px rgba(26,107,255,0.3)',
+        lift: '0 30px 60px -20px rgba(0,0,0,0.25)',
+        'lift-dark': '0 30px 60px -20px rgba(0,0,0,0.6)',
+      },
+      transitionTimingFunction: {
+        apple: 'cubic-bezier(0.23, 1, 0.32, 1)',
       },
     },
   },

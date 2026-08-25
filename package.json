@@ -1,28 +1,26 @@
+
 {
   "name": "portfolio",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/fetch-projects.mjs --mode=dev",
     "dev": "vite",
+    "prebuild": "node scripts/fetch-projects.mjs --mode=build",
     "build": "tsc && vite build",
+    "fetch:projects": "node scripts/fetch-projects.mjs --mode=build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^9.122.0",
-    "@react-three/fiber": "^8.18.0",
-    "@react-three/postprocessing": "^2.19.1",
     "framer-motion": "^11.5.4",
-    "gsap": "^3.15.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-helmet-async": "^2.0.5",
-    "three": "^0.170.0"
+    "react-helmet-async": "^2.0.5"
   },
   "devDependencies": {
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "@types/three": "^0.170.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.41",

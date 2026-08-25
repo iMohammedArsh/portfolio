@@ -14,22 +14,35 @@ Personal portfolio site built with React + TypeScript + Tailwind CSS. Deployed o
 
 ## Sections
 
-- **Hero** — Full-width editorial headline with interactive particle canvas
+- **Hero** — Full-bleed video background, typed role, count-up stats, magnetic CTAs
+- **Story** — Sticky-scroll video section scrubbing three short statements
 - **Values** — SCALABLE · INTELLIGENT · PERFORMANT · PURPOSEFUL
-- **About** — Background, info cards with tilt effect
-- **Skills** — Dark "TECH STACK" section with pill capsules + scrolling marquee
-- **Projects** — Case study cards with gradient thumbnails
+- **About** — Background, bio, quick-facts info cards
+- **Skills** — Tech grid + scrolling marquee
+- **Projects** — Auto-generated from public GitHub repos at build time (see below) — no manual editing
 - **Experience** — Animated timeline
-- **Contact** — Dark-themed form with inquiry checkboxes + "Let's Talk!" marquee
+- **Contact** — Form (wired to Formspree — see Setup) + social links + "Let's Talk" marquee
+
+## Setup
+
+Copy `.env.example` to `.env` and fill in a [Formspree](https://formspree.io) endpoint so the
+contact form can actually send messages:
+
+```bash
+cp .env.example .env
+```
 
 ## Dev
 
 ```bash
 npm install
 npm run dev       # http://localhost:5173
-npm run build     # TypeScript check + Vite bundle → dist/
+npm run build     # Fetch projects + TypeScript check + Vite bundle → dist/
 npm run preview   # Preview production build
 ```
+
+`npm run dev`/`npm run build` fetch the Projects section's data automatically from GitHub — see
+`CLAUDE.md` for how that works. Run `npm run fetch:projects` to refresh it manually.
 
 ## Deploy (Cloudflare)
 
@@ -37,7 +50,3 @@ npm run preview   # Preview production build
 npm run build
 npx wrangler deploy
 ```
-
-## Coming Soon
-
-- MongoDB integration for contact form submissions

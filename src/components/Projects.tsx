@@ -1,158 +1,208 @@
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import projectsData from '../data/projects.generated.json'
+import type { ProjectData } from '../types/project'
+import GitHubIcon from './ui/GitHubIcon'
+import { DURATION, EASE, revealBlur, useTilt, viewportOnce } from '../lib/motion'
 
-const projects = [
-  {
-    tag: 'Full Stack',
-    tagColor: 'bg-blue/10 text-blue border-blue/20',
-    name: 'Dev Education Platform',
-    desc: 'A structured learning platform for developers — covering React, APIs, and AI-powered tooling from the ground up.',
-    tech: ['React', 'Next.js', 'FastAPI', 'PostgreSQL'],
-    status: 'In development',
-    statusDot: 'bg-blue',
-    accent: 'from-blue/30 to-violet/20',
-    github: 'https://github.com/iMohammedArsh',
-  },
-  {
-    tag: 'AI / ML',
-    tagColor: 'bg-violet/10 text-violet border-violet/20',
-    name: 'AI Writing Assistant',
-    desc: 'LangChain-powered tool that helps developers write docs, READMEs, and commit messages — fast.',
-    tech: ['Python', 'LangChain', 'OpenAI API', 'FastAPI'],
-    status: 'Prototyping',
-    statusDot: 'bg-violet',
-    accent: 'from-violet/30 to-blue/20',
-    github: 'https://github.com/iMohammedArsh',
-  },
-  {
-    tag: 'Open Source',
-    tagColor: 'bg-white/6 text-white/50 border-white/10',
-    name: 'UI Component Library',
-    desc: 'Accessible, zero-dependency React components built for speed, flexibility, and dark-mode-first design.',
-    tech: ['React', 'TypeScript', 'Tailwind CSS', 'Storybook'],
-    status: 'Planning',
-    statusDot: 'bg-white/30',
-    accent: 'from-white/10 to-blue/10',
-    github: 'https://github.com/iMohammedArsh',
-  },
-]
+const projects = projectsData as ProjectData[]
 
-export default function Projects() {
+const GITHUB_PROFILE_URL = 'https://github.com/iMohammedArsh'
+
+function timeAgo(iso: string) {
+  const days = Math.floor((Date.now() - new Date(iso).getTime()) / 86_400_000)
+  if (days < 1) return 'today'
+  if (days === 1) return '1 day ago'
+  if (days < 30) return `${days} days ago`
+  const months = Math.floor(days / 30)
+  if (months < 12) return months === 1 ? '1 month ago' : `${months} months ago`
+  const years = Math.floor(months / 12)
+  return years === 1 ? '1 year ago' : `${years} years ago`
+}
+
+function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
+  const tilt = useTilt(5)
   return (
-    <section id="projects" aria-label="Projects" className="bg-ink py-24 px-6">
-      <div className="max-w-[1280px] mx-auto">
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-16"
-        >
-          <div>
-            <p className="font-dm text-[10px] text-white/25 tracking-[0.4em] uppercase mb-4">/ Selected Work</p>
-            <h2 className="font-hero font-black text-5xl md:text-7xl text-white tracking-[-0.03em]">
-              Projects<span className="text-blue">.</span>
-            </h2>
-          </div>
-          <a
-            href="https://github.com/iMohammedArsh"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-cursor-hover
-            className="inline-flex items-center gap-2 px-5 py-2.5 border border-white/10 rounded-badge font-dm text-sm text-white/40 hover:border-white/25 hover:text-white/70 transition-all duration-200 shrink-0"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-            </svg>
-            View GitHub
-          </a>
-        </motion.div>
-
-        {/* Project rows — editorial horizontal cards */}
-        <div className="flex flex-col gap-0">
-          {projects.map((project, i) => (
-            <motion.div
-              key={project.name}
-              initial={{ opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: i * 0.1 }}
-              data-cursor-hover
-              className="group relative grid grid-cols-1 md:grid-cols-[280px_1fr] gap-0 border-t border-white/6 py-8 hover:border-blue/30 transition-colors duration-300"
-            >
-              {/* Left: gradient panel */}
-              <div className={`relative h-40 md:h-full md:min-h-[140px] rounded-card overflow-hidden bg-gradient-to-br ${project.accent} mr-0 md:mr-8`}>
-                <div
-                  className="absolute inset-0 opacity-20"
-                  style={{
-                    backgroundImage: 'linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)',
-                    backgroundSize: '20px 20px',
-                  }}
-                />
-                {/* Tag */}
-                <div className="absolute top-4 left-4">
-                  <span className={`px-2.5 py-1 text-[10px] font-dm font-semibold border rounded-badge ${project.tagColor}`}>
-                    {project.tag}
-                  </span>
-                </div>
-                {/* Status dot */}
-                <div className="absolute bottom-4 right-4 flex items-center gap-1.5">
-                  <span className={`w-1.5 h-1.5 rounded-full ${project.statusDot} animate-pulse`} />
-                  <span className="font-dm text-[10px] text-white/40">{project.status}</span>
-                </div>
-              </div>
-
-              {/* Right: text content */}
-              <div className="flex flex-col justify-center pt-4 md:pt-0">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="font-dm text-[10px] text-white/20 tracking-[0.3em] uppercase">0{i + 1}</span>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-white/20 hover:text-blue transition-colors"
-                  >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                  </a>
-                </div>
-
-                <h3 className="font-hero font-black text-2xl md:text-3xl text-white tracking-[-0.02em] mb-3 group-hover:text-blue transition-colors duration-300">
-                  {project.name}
-                </h3>
-                <p className="font-dm text-white/40 text-sm leading-relaxed mb-5 max-w-lg">
-                  {project.desc}
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span key={t} className="px-2.5 py-1 text-[11px] font-dm border border-white/8 rounded-badge text-white/30">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Blue left bar on hover */}
-              <div className="absolute left-0 top-8 bottom-8 w-px bg-blue opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </motion.div>
-          ))}
-
-          <div className="border-t border-white/6 pt-8">
-            <p className="text-sm font-dm text-white/20">
-              More coming — follow on{' '}
-              <a
-                href="https://github.com/iMohammedArsh"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue hover:underline underline-offset-4"
-              >
-                GitHub
-              </a>
-            </p>
+    <div
+      data-cursor-hover
+      data-cursor-label={project.homepage ? 'View live' : 'View code'}
+      onMouseMove={tilt.onMouseMove}
+      onMouseLeave={tilt.onMouseLeave}
+      style={{ perspective: 1000 }}
+      className="shrink-0 w-[82vw] sm:w-[420px]"
+    >
+      <motion.div
+        style={{ rotateX: tilt.rotateX, rotateY: tilt.rotateY, transformStyle: 'preserve-3d' }}
+        className="group relative flex flex-col h-full rounded-card border border-white/12 bg-white/[0.02] p-8 hover:border-white/30 hover:bg-white/[0.04] transition-colors duration-300"
+      >
+        <div className="flex items-center justify-between mb-6">
+          <span className="font-sans text-[12px] text-white/30">0{index + 1}</span>
+          <div className="flex items-center gap-3 text-white/35 font-sans text-[12px]">
+            {project.language && <span>{project.language}</span>}
+            {project.stars > 0 && <span>★ {project.stars}</span>}
           </div>
         </div>
+
+        <h3 className="font-sans font-semibold text-2xl text-white mb-3 tracking-[-0.01em]">
+          {project.name}
+        </h3>
+        <p className="font-sans text-white/50 text-[15px] leading-relaxed mb-6 flex-1">
+          {project.description}
+        </p>
+
+        {project.topics.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.topics.map((t) => (
+              <span key={t} className="px-2.5 py-1 text-[11px] font-sans rounded-badge border border-white/12 text-white/45">
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
+
+        <div className="flex items-center justify-between pt-4 border-t border-white/10 mt-auto">
+          <span className="font-sans text-[11px] text-white/35">
+            Updated {timeAgo(project.updatedAt)}
+          </span>
+          <div className="flex items-center gap-4">
+            {project.homepage && (
+              <a
+                href={project.homepage}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-sans text-[11px] text-white/50 hover:text-white transition-colors"
+              >
+                Live ↗
+              </a>
+            )}
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 hover:text-white transition-colors"
+            >
+              <GitHubIcon size={14} />
+            </a>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  )
+}
+
+export default function Projects() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [trackWidth, setTrackWidth] = useState(0)
+  const [viewportH, setViewportH] = useState(0)
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  useEffect(() => {
+    const measure = () => {
+      if (trackRef.current) {
+        setTrackWidth(Math.max(trackRef.current.scrollWidth - window.innerWidth, 0))
+      }
+      setViewportH(window.innerHeight)
+    }
+    measure()
+    window.addEventListener('resize', measure)
+    return () => window.removeEventListener('resize', measure)
+  }, [])
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end end'],
+  })
+  const x = useTransform(scrollYProgress, [0, 1], [0, -trackWidth])
+
+  useEffect(() => {
+    return x.on('change', () => {
+      if (trackWidth === 0 || projects.length === 0) return
+      const progress = Math.min(Math.max(-x.get() / trackWidth, 0), 1)
+      setActiveIndex(Math.round(progress * (projects.length - 1)))
+    })
+  }, [x, trackWidth])
+
+  const canScroll = trackWidth > 0
+  const sectionHeight = canScroll ? viewportH + trackWidth : undefined
+
+  return (
+    <section
+      ref={sectionRef}
+      id="projects"
+      aria-label="Projects"
+      className="relative bg-ink"
+      style={sectionHeight ? { height: sectionHeight } : undefined}
+    >
+      <div className={canScroll ? 'sticky top-0 h-screen overflow-hidden flex flex-col justify-center' : ''}>
+        <div className="px-6 md:px-10 lg:pl-36 max-w-[1400px] mx-auto w-full">
+          <motion.div
+            variants={revealBlur}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12"
+          >
+            <div>
+              <h2 className="font-sans font-semibold text-4xl md:text-6xl text-white tracking-[-0.02em]">
+                What I've shipped.
+              </h2>
+              <p className="font-sans text-white/40 text-[15px] mt-4 max-w-md">
+                Pulled straight from GitHub at build time — this list updates itself, no manual edits.
+              </p>
+            </div>
+            <div className="flex items-center gap-6 shrink-0">
+              {projects.length > 0 && (
+                <span className="font-sans text-[13px] text-white/30">
+                  {String(activeIndex + 1).padStart(2, '0')} / {String(projects.length).padStart(2, '0')}
+                </span>
+              )}
+              <a
+                href={GITHUB_PROFILE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-cursor-hover
+                className="inline-flex items-center gap-2 font-sans text-[13px] text-white border-b border-white/30 pb-1 hover:border-white transition-colors duration-200"
+              >
+                <GitHubIcon size={13} />
+                GitHub
+              </a>
+            </div>
+          </motion.div>
+        </div>
+
+        {projects.length === 0 ? (
+          <div className="mx-6 md:mx-10 lg:ml-36 text-center py-16 rounded-card border border-white/12">
+            <p className="font-sans text-white/50 text-sm mb-4">Projects are being set up — check GitHub directly.</p>
+            <a
+              href={GITHUB_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor-hover
+              className="font-sans text-[13px] text-white underline underline-offset-4"
+            >
+              View profile →
+            </a>
+          </div>
+        ) : (
+          <motion.div
+            ref={trackRef}
+            style={{ x }}
+            className="flex gap-6 px-6 md:px-10 lg:pl-36 pr-10"
+          >
+            {projects.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} />
+            ))}
+          </motion.div>
+        )}
+
+        {canScroll && (
+          <div className="px-6 md:px-10 lg:pl-36 max-w-[1400px] mx-auto w-full mt-8">
+            <div className="relative h-px w-full max-w-xs bg-white/10 overflow-hidden">
+              <motion.div className="absolute inset-y-0 left-0 bg-white" style={{ width: `${((activeIndex + 1) / projects.length) * 100}%` }} transition={{ duration: DURATION.fast, ease: EASE }} />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )

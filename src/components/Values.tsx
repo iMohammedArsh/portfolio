@@ -1,57 +1,65 @@
 import { motion } from 'framer-motion'
+import { revealBlur, staggerContainer, viewportOnce } from '../lib/motion'
 
-const values = [
-  { keyword: 'SCALABLE',    description: 'Systems that grow with you — architected for the long run, not just the demo.' },
-  { keyword: 'INTELLIGENT', description: 'AI-driven solutions that think, adapt, and solve real problems at scale.' },
-  { keyword: 'PERFORMANT',  description: 'Fast by design. Every millisecond is a UX decision.' },
-  { keyword: 'PURPOSEFUL',  description: 'Built with intention. No bloat, no noise — only what matters.' },
+const principles = [
+  {
+    num: '01',
+    title: 'Architecture first',
+    description: "I'd rather over-plan a system than patch it forever. Most of my slow weeks are the reason later weeks are fast.",
+  },
+  {
+    num: '02',
+    title: 'AI where it earns its place',
+    description: 'Language models go in when they solve something real — not as a checkbox on a feature list.',
+  },
+  {
+    num: '03',
+    title: 'Fast, on purpose',
+    description: 'Every extra millisecond is a decision I made, usually by accident. I try not to make it twice.',
+  },
+  {
+    num: '04',
+    title: 'Finished, not just functional',
+    description: 'Clean APIs, considered edge cases, no loose ends left for future-me to deal with.',
+  },
 ]
-
-const containerVariants = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] } },
-}
 
 export default function Values() {
   return (
-    <section aria-label="Engineering values" className="bg-ink px-6 py-20 border-t border-white/5">
-      <div className="max-w-[1280px] mx-auto">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="font-dm text-[10px] text-white/20 tracking-[0.4em] uppercase mb-12"
-        >
-          / What I stand for
-        </motion.p>
-
-        <motion.div
-          variants={containerVariants}
+    <section id="values" aria-label="How I work" className="bg-paper px-6 md:px-10 lg:pl-36 py-28 md:py-36">
+      <div className="max-w-[1320px] mx-auto">
+        <motion.h2
+          variants={revealBlur}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0"
+          viewport={viewportOnce}
+          className="font-sans font-semibold text-4xl md:text-6xl text-ink tracking-[-0.02em] mb-16 md:mb-20 max-w-2xl"
         >
-          {values.map((v, i) => (
+          Principles, not vibes.
+        </motion.h2>
+
+        <motion.div
+          variants={staggerContainer(0.1)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          className="border-t border-ink/10"
+        >
+          {principles.map((p) => (
             <motion.div
-              key={v.keyword}
-              variants={itemVariants}
-              className={`py-8 pr-8 ${i < values.length - 1 ? 'lg:border-r border-white/6' : ''} ${i > 0 ? 'lg:pl-8 lg:pr-0' : ''}`}
+              key={p.num}
+              variants={revealBlur}
+              className="group grid grid-cols-1 md:grid-cols-[100px_1fr_1.3fr] gap-x-8 gap-y-3 py-9 md:py-11 border-b border-ink/10 items-baseline"
             >
-              <h3
-                className="font-hero font-black text-2xl text-white uppercase mb-3"
-                style={{ letterSpacing: '0.04em' }}
-              >
-                {v.keyword}
+              <span className="font-sans font-semibold text-lg text-ink/25 group-hover:text-ink transition-colors duration-300">
+                {p.num}
+              </span>
+              <h3 className="font-sans font-semibold text-2xl md:text-3xl text-ink tracking-[-0.01em]">
+                {p.title}
               </h3>
-              <div className="w-6 h-0.5 bg-blue mb-4" style={{ boxShadow: '0 0 8px rgba(26,107,255,0.6)' }} />
-              <p className="font-dm text-sm text-white/30 leading-relaxed">{v.description}</p>
+              <p className="font-sans text-ink/55 text-[17px] leading-relaxed max-w-lg">
+                {p.description}
+              </p>
             </motion.div>
           ))}
         </motion.div>

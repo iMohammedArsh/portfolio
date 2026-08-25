@@ -1,81 +1,86 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { DURATION, EASE, revealBlur, viewportOnce } from '../lib/motion'
 
-const infoCards = [
-  { label: 'Location',           value: 'Kerala, India' },
-  { label: 'Specialization',     value: 'Full Stack + AI/ML' },
-  { label: 'Currently building', value: 'Personal brand + dev education platform' },
-  { label: 'Open to',            value: 'Freelance · Startup collabs · Open source' },
-  { label: 'Languages',          value: 'English · Malayalam · Hindi' },
+const facts = [
+  { key: 'Location',      value: 'Kerala, India' },
+  { key: 'Focus',         value: 'Full Stack + AI/ML' },
+  { key: 'Now building',  value: 'Personal brand + dev education platform' },
+  { key: 'Open to',       value: 'Freelance · Startups · Open source' },
+  { key: 'Languages',     value: 'English · Malayalam · Hindi' },
 ]
 
 export default function About() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+  const parallaxY = useTransform(scrollYProgress, [0, 1], [-50, 50])
+
   return (
-    <section id="about" aria-label="About Mohammed Arsh" className="bg-ink py-24 px-6 grid-bg-dark">
-      <div className="max-w-[1280px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-20 items-start">
+    <section
+      ref={sectionRef}
+      id="about"
+      aria-label="About Mohammed Arsh"
+      className="relative bg-ink py-28 md:py-36 px-6 md:px-10 lg:pl-36 overflow-hidden"
+    >
+      <motion.span
+        style={{ y: parallaxY, WebkitTextStroke: '1px rgba(255,255,255,0.04)' }}
+        className="pointer-events-none select-none absolute right-[2%] top-4 font-sans font-black text-[18rem] leading-none text-transparent"
+        aria-hidden="true"
+      >
+        02
+      </motion.span>
 
-          {/* Left */}
+      <div className="relative max-w-[1320px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-16 lg:gap-24 items-start">
+
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+            variants={revealBlur}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
           >
-            <p className="font-dm text-[10px] text-white/40 tracking-[0.4em] uppercase mb-6">/ About</p>
+            <p className="font-sans text-[13px] text-white/40 mb-7 tracking-wide">About</p>
 
-            <div className="flex items-end gap-4 mb-8">
-              <span className="font-hero font-black text-[5rem] md:text-[7rem] text-white leading-none tracking-[-0.05em] opacity-10 select-none">
-                04
-              </span>
-              <div className="mb-2">
-                <span className="font-hero font-black text-[5rem] md:text-[7rem] text-blue leading-none tracking-[-0.05em]">+</span>
-              </div>
-              <div className="mb-4">
-                <p className="font-dm text-[10px] text-white/30 uppercase tracking-[0.3em]">Years of</p>
-                <p className="font-hero font-black text-2xl text-white tracking-[-0.02em]">Building</p>
-              </div>
-            </div>
-
-            <h2 className="font-hero font-black text-4xl md:text-5xl lg:text-6xl text-white leading-[1.05] tracking-[-0.03em] mb-8" style={{ textWrap: 'balance' } as React.CSSProperties}>
-              Building tech that<br />
-              <span className="text-blue">feels simple.</span>
+            <h2 className="font-sans font-semibold text-3xl md:text-4xl text-white leading-[1.3] tracking-[-0.01em] max-w-2xl">
+              I'm a self-taught Full Stack and AI/ML Engineer from Kerala, India.
+              It started with wanting to know how a webpage actually worked —
+              inspect element, then a tutorial, then a late night that turned
+              into three. That's still roughly how I learn.
             </h2>
 
-            <div className="space-y-4 text-white/60 font-dm text-lg leading-relaxed max-w-lg">
-              <p>I'm a self-taught Full Stack and AI/ML Engineer from Kerala, India. What started as curiosity about how websites work turned into a full-on obsession with building things that matter.</p>
-              <p>I specialize in making complex systems feel intuitive — whether that's a React frontend, a FastAPI backend, or an AI pipeline powered by LangChain.</p>
-              <p>Currently building my personal brand and an education platform for developers. Always open to interesting problems and great people.</p>
+            <div className="space-y-5 font-sans text-white/50 text-lg leading-relaxed max-w-[560px] mt-9">
+              <p>I care about the seam where a clean React frontend meets a solid FastAPI backend — and where an AI pipeline in LangChain actually holds up outside a demo.</p>
+              <p>Right now I'm building my own brand and a platform to teach other developers what I wish someone had handed me earlier. Always open to interesting problems and good people to build with.</p>
             </div>
 
             <a
               href="#projects"
               data-cursor-hover
-              className="inline-flex items-center gap-2 mt-8 px-6 py-3 bg-blue text-white font-dm font-semibold text-sm rounded-badge hover:bg-blue/80 active:scale-[0.97] transition-all duration-150"
+              className="group relative inline-flex items-center gap-2 mt-10 font-sans text-[14px] text-white"
             >
-              View my work →
+              View my work
+              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
+              <span className="absolute left-0 -bottom-1 h-px w-full bg-white/30 scale-x-100" />
             </a>
           </motion.div>
 
-          {/* Right: Info cards — clean, no tilt */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
+          <motion.dl
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
-            className="flex flex-col gap-5 lg:pt-8"
+            viewport={viewportOnce}
+            transition={{ duration: DURATION.slow, delay: 0.15, ease: EASE }}
+            className="divide-y divide-white/10 border-t border-white/10 lg:pt-1"
           >
-            <p className="font-dm text-[10px] text-white/40 uppercase tracking-[0.4em] mb-2">Quick facts</p>
-            {infoCards.map((card) => (
-              <div
-                key={card.label}
-                className="border-l-2 border-blue/30 pl-4 py-2 hover:border-blue transition-colors duration-200"
-              >
-                <p className="text-[10px] font-dm text-white/35 uppercase tracking-[0.3em] mb-1">{card.label}</p>
-                <p className="text-sm font-dm text-white/70 font-medium">{card.value}</p>
+            {facts.map((f) => (
+              <div key={f.key} className="py-4">
+                <dt className="font-sans text-[12px] text-white/35 mb-1.5">{f.key}</dt>
+                <dd className="font-sans text-[15px] text-white/85">{f.value}</dd>
               </div>
             ))}
-          </motion.div>
-
+          </motion.dl>
         </div>
       </div>
     </section>
