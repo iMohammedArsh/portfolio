@@ -8,7 +8,7 @@
     "predev": "node scripts/fetch-projects.mjs --mode=dev",
     "dev": "vite",
     "prebuild": "node scripts/fetch-projects.mjs --mode=build",
-    "build": "tsc && vite build",
+    "build": "tsc && vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && node scripts/prerender.mjs",
     "fetch:projects": "node scripts/fetch-projects.mjs --mode=build",
     "preview": "vite preview"
   },

@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { EASE, kineticWord, staggerContainer, useMagnetic } from '../lib/motion'
 
 function useCountUp(target: number, startDelay = 500, duration = 900) {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(() => (typeof window === 'undefined' ? target : 0))
   useEffect(() => {
     let raf: number
     const origin = performance.now() + startDelay
